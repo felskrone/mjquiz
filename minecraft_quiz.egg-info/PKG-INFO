@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: minecraft-quiz
+Version: 0.1.0
+Summary: A web-based Minecraft quiz application with high score tracking
+Requires-Python: >=3.11
+Requires-Dist: flask>=3.0.0
+Requires-Dist: gunicorn>=21.2.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: build>=1.0.0; extra == "dev"

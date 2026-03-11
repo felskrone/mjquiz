@@ -1,0 +1,25 @@
+# MANIFEST.in - Zusätzliche Dateien für Distribution einschließen
+
+# Templates
+recursive-include quiz/templates *.html
+
+# Static files
+recursive-include quiz/static *.css *.js *.png *.jpg *.ico
+
+# Data files
+include quiz/*.txt
+include quiz/questions.txt
+
+# Documentation
+include README.md
+include DEPLOYMENT.md
+include project.md
+
+# Configuration examples
+include .env.example
+
+# Exclude entwicklungs- und temporäre Dateien
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+exclude quiz/highscores.txt

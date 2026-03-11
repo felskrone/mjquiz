@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Minecraft Quiz - Frage {{ fragen_nummer }}{% endblock %}
+
+{% block content %}
+<div class="quiz-content">
+    <div class="progress-bar">
+        <div class="progress" style="width: {{ (fragen_nummer / gesamte_fragen * 100) }}%"></div>
+    </div>
+
+    <div class="question-info">
+        <span class="question-number">Frage {{ fragen_nummer }} von {{ gesamte_fragen }}</span>
+    </div>
+
+    <div class="question-card">
+        <h2 class="question-text">{{ frage.frage_text }}</h2>
+
+        <form method="POST" action="{{ url_for('submit') }}" class="answer-form">
+            <div class="answers">
+                <button type="submit" name="antwort" value="1" class="answer-button">
+                    <span class="answer-number">1</span>
+                    <span class="answer-text">{{ frage.antwort_1 }}</span>
+                </button>
+
+                <button type="submit" name="antwort" value="2" class="answer-button">
+                    <span class="answer-number">2</span>
+                    <span class="answer-text">{{ frage.antwort_2 }}</span>
+                </button>
+
+                <button type="submit" name="antwort" value="3" class="answer-button">
+                    <span class="answer-number">3</span>
+                    <span class="answer-text">{{ frage.antwort_3 }}</span>
+                </button>
+
+                <button type="submit" name="antwort" value="4" class="answer-button">
+                    <span class="answer-number">4</span>
+                    <span class="answer-text">{{ frage.antwort_4 }}</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -88,3 +88,26 @@ tasks:
       - uv run python --version
       - echo ""
     silent: true
+
+  build:
+    desc: Paket mit allen Assets erstellen (erstellt build/ Ordner)
+    cmds:
+      - echo "🏗️  Erstelle Build-Paket..."
+      - uv pip install build wheel
+      - uv run python -m build
+      - echo "✅ Build abgeschlossen!"
+      - echo ""
+      - echo "📦 Erstellt:"
+      - ls -lh dist/
+      - echo ""
+      - echo "📁 Build-Ordner:"
+      - ls -lh build/
+    silent: true
+
+  build-clean:
+    desc: Build-Artefakte entfernen
+    cmds:
+      - echo "🧹 Entferne Build-Artefakte..."
+      - rm -rf build/ dist/ *.egg-info quiz/*.egg-info
+      - echo "✅ Build-Artefakte entfernt!"
+    silent: true

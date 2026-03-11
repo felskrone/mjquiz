@@ -1,0 +1,104 @@
+Question1: What is the primary material used to craft a crafting table?
+Answer 1: Stone
+Answer 2: Iron
+Answer 3: Wood
+Answer 4: Diamond
+Correct Answer: 3
+
+Question2: How many obsidian blocks are needed to create a Nether portal frame?
+Answer 1: 8 blocks
+Answer 2: 10 blocks
+Answer 3: 12 blocks
+Answer 4: 14 blocks
+Correct Answer: 2
+
+Question3: What food item has the highest saturation value in Minecraft?
+Answer 1: Cooked beef
+Answer 2: Golden carrot
+Answer 3: Enchanted golden apple
+Answer 4: Cake
+Correct Answer: 4
+
+Question4: At what Y-level do diamonds spawn most commonly?
+Answer 1: Y: 5 to Y: 12
+Answer 2: Y: -64 to Y: 16
+Answer 3: Y: 0 to Y: 16
+Answer 4: Y: 10 to Y: 20
+Correct Answer: 2
+
+Question5: How many eyes of ender are needed to activate an End portal?
+Answer 1: 8
+Answer 2: 10
+Answer 3: 12
+Answer 4: 16
+Correct Answer: 3
+
+Question6: What is the blast resistance of obsidian?
+Answer 1: 600
+Answer 2: 1200
+Answer 3: 1800
+Answer 4: 3000
+Correct Answer: 2
+
+Question7: Which mob drops blaze rods?
+Answer 1: Wither skeleton
+Answer 2: Enderman
+Answer 3: Blaze
+Answer 4: Magma cube
+Correct Answer: 3
+
+Question8: How many blocks of iron are needed to craft a full beacon pyramid?
+Answer 1: 164 blocks
+Answer 2: 244 blocks
+Answer 3: 324 blocks
+Answer 4: 404 blocks
+Correct Answer: 1
+
+Question9: What is the maximum enchantment level for the Sharpness enchantment?
+Answer 1: III
+Answer 2: IV
+Answer 3: V
+Answer 4: X
+Correct Answer: 3
+
+Question10: How long does it take for a tree sapling to grow into a full tree?
+Answer 1: 30 seconds to 5 minutes
+Answer 2: 1 to 3 minutes
+Answer 3: 5 to 10 minutes
+Answer 4: It varies randomly
+Correct Answer: 4
+
+Question11: What is the crafting recipe for a book?
+Answer 1: 3 paper and 1 leather
+Answer 2: 2 paper and 1 leather
+Answer 3: 3 paper and 2 leather
+Answer 4: 4 paper and 1 leather
+Correct Answer: 1
+
+Question12: Which dimension contains the stronghold with the End portal?
+Answer 1: The Nether
+Answer 2: The End
+Answer 3: The Overworld
+Answer 4: The Deep Dark
+Correct Answer: 3
+
+Question13: How many different wood types are there in Minecraft Java Edition?
+Answer 1: 6
+Answer 2: 8
+Answer 3: 9
+Answer 4: 10
+Correct Answer: 3
+
+Question14: What is the maximum stack size for ender pearls?
+Answer 1: 64
+Answer 2: 32
+Answer 3: 16
+Answer 4: 1
+Correct Answer: 3
+
+Question15: Which potion effect is given by eating a golden apple?
+Answer 1: Regeneration and Resistance
+Answer 2: Speed and Jump Boost
+Answer 3: Strength and Regeneration
+Answer 4: Absorption and Regeneration
+Correct Answer: 4

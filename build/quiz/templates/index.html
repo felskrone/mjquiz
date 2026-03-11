@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Minecraft Quiz - Startseite{% endblock %}
+
+{% block content %}
+<div class="home-content">
+    <section class="welcome-section">
+        <h2>Willkommen zum Minecraft Quiz!</h2>
+        <p>Teste dein Wissen über Minecraft und kämpfe um den ersten Platz in der Bestenliste.</p>
+    </section>
+
+    <section class="high-scores-section">
+        <h2>🏆 Top 10 Highscores 🏆</h2>
+        {% if top_ergebnisse %}
+            <table class="high-scores-table">
+                <thead>
+                    <tr>
+                        <th>Rang</th>
+                        <th>Spieler</th>
+                        <th>Punktzahl</th>
+                        <th>Prozent</th>
+                        <th>Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ergebnis in top_ergebnisse %}
+                    <tr>
+                        <td class="rank">{{ loop.index }}</td>
+                        <td class="player-name">{{ ergebnis.spieler_name }}</td>
+                        <td class="score">{{ ergebnis.punktzahl }}/{{ ergebnis.gesamte_fragen }}</td>
+                        <td class="percentage">{{ "%.1f"|format(ergebnis.prozentsatz) }}%</td>
+                        <td class="date">{{ ergebnis.abgeschlossen_am[:10] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-scores">Noch keine Highscores. Sei der Erste und spiele!</p>
+        {% endif %}
+    </section>
+
+    <section class="start-quiz-section">
+        <h2>Bereit zum Spielen?</h2>
+        <form method="POST" action="{{ url_for('start') }}" class="start-form">
+            <div class="form-group">
+                <label for="spieler_name">Gib deinen Namen ein:</label>
+                <input
+                    type="text"
+                    id="spieler_name"
+                    name="spieler_name"
+                    maxlength="50"
+                    required
+                    placeholder="Dein Name"
+                    autofocus
+                >
+            </div>
+            <button type="submit" class="btn btn-primary">Quiz starten</button>
+        </form>
+    </section>
+</div>
+{% endblock %}

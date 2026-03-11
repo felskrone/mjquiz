@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sqlite3:*)",
+      "Bash(curl:*)",
+      "Bash(uv run:*)",
+      "Bash(/workspace/.env.example:*)",
+      "Bash(du:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(task:*)",
+      "Bash(unzip:*)",
+      "Bash(mkdir:*)"
+    ]
+  }
+}
