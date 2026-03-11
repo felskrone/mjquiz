@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   minecraft-quiz:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: felskrone/mj-quiz:latest
     container_name: minecraft-quiz
     ports:
       - "5000:5000"

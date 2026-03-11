@@ -112,10 +112,25 @@ tasks:
       - echo "✅ Build-Artefakte entfernt!"
     silent: true
 
-  docker-build:
+  docker-build-linux:
     desc: Docker-Image bauen
     cmds:
       - echo "🐳 Baue Docker-Image..."
-      - docker build -t minecraft-quiz:latest .
+      - docker build -t felskrone/mjquiz:latest --platform linux/amd64 .
       - echo "✅ Docker-Image gebaut!"
     silent: true
+
+  docker-build-local:
+    desc: Docker-Image bauen
+    cmds:
+      - echo "🐳 Baue Docker-Image..."
+      - docker build -t felskrone/mjquiz:latest .
+      - echo "✅ Docker-Image gebaut!"
+    silent: true
+
+
+  docker-push:
+    desc: Docker-Image auf Docker Hub pushen
+    cmds:
+      - echo "🐳 Pushe Docker-Image auf Docker Hub..."
+      - docker push felskrone/mjquiz:latest

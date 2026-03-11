@@ -1,7 +1,7 @@
 # Minecraft Quiz Application - Docker Image
 # Basierend auf Ubuntu mit Python 3.11
 
-FROM ubuntu:22.04
+FROM ubuntu:26.04
 
 # Metadaten
 LABEL maintainer="Minecraft Quiz Team"
@@ -22,18 +22,8 @@ RUN apt-get update && \
     software-properties-common \
     curl \
     ca-certificates \
-    && add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get install -y \
-    python3.11 \
-    python3.11-venv \
-    python3.11-dev \
-    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Erstelle Symlinks für Python
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 && \
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # Kopiere pyproject.toml zuerst (für besseres Layer-Caching)
 COPY pyproject.toml .
@@ -41,7 +31,7 @@ COPY pyproject.toml .
 
 
 # Erstelle nicht-root Benutzer für Sicherheit
-RUN useradd -m -u 1000 quizapp && \
+RUN useradd -m -u 1001 quizapp && \
     chown -R quizapp:quizapp /app
 
 # Kopiere Anwendungscode
