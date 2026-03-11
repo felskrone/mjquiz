@@ -12,15 +12,7 @@ tasks:
     desc: Abhängigkeiten installieren
     cmds:
       - echo "📦 Installiere Abhängigkeiten..."
-      - uv pip install .
-      - echo "✅ Installation abgeschlossen!"
-    silent: true
-
-  install-pip:
-    desc: Abhängigkeiten installieren (mit pip)
-    cmds:
-      - echo "📦 Installiere Abhängigkeiten mit pip..."
-      - pip install .
+      - uv venv && uv sync
       - echo "✅ Installation abgeschlossen!"
     silent: true
 
@@ -28,7 +20,7 @@ tasks:
     desc: Anwendung starten
     cmds:
       - echo "🚀 Starte Anwendung auf http://localhost:{{.PORT}}"
-      - python -m {{.APP_MODULE}}
+      - uv run python3 -m {{.APP_MODULE}}
     silent: true
 
   dev:
@@ -59,23 +51,18 @@ tasks:
     desc: Komplettes Setup (venv + install + env)
     cmds:
       - echo "⚙️  Erstelle virtuelle Umgebung..."
-      - python -m venv venv
+      - uv venv && uv sync
       - echo "📦 Installiere Abhängigkeiten..."
-      - ./venv/bin/pip install .
       - echo "📝 Erstelle .env Datei..."
       - cp .env.example .env
       - echo "✅ Setup abgeschlossen!"
-      - echo ""
-      - echo "▶️  Nächste Schritte - 1. Aktiviere venv - source venv/bin/activate"
-      - echo "   2. Bearbeite .env und setze SECRET_KEY"
-      - echo "   3. Starte App - task run"
     silent: true
 
   generate-key:
     desc: Sicheren SECRET_KEY generieren
     cmds:
       - echo "🔐 Generiere SECRET_KEY..."
-      - python -c "import secrets; print('SECRET_KEY=' + secrets.token_hex(32))"
+      - uv run python3 -c "import secrets; print('SECRET_KEY=' + secrets.token_hex(32))"
       - echo ""
       - echo "💡 Kopiere die Zeile oben in deine .env Datei"
     silent: true
@@ -84,15 +71,8 @@ tasks:
     desc: Code-Qualität prüfen
     cmds:
       - echo "🔍 Prüfe Code..."
-      - python -m py_compile quiz/anwendung.py quiz/datenbank.py quiz/quiz_lader.py
+      - uv run python3 -m py_compile quiz/anwendung.py quiz/datenbank.py quiz/quiz_lader.py
       - echo "✅ Keine Syntax-Fehler gefunden!"
-    silent: true
-
-  serve:
-    desc: Produktions-Server mit Gunicorn starten
-    cmds:
-      - echo "🚀 Starte Gunicorn Server..."
-      - gunicorn --bind 0.0.0.0:{{.PORT}} --workers 4 {{.APP_MODULE}}:app
     silent: true
 
   info:
@@ -103,8 +83,6 @@ tasks:
       - echo "   Modul - {{.APP_MODULE}}"
       - echo "   Port - {{.PORT}}"
       - echo "   URL - http://localhost:{{.PORT}}"
-      - python --version
+      - uv run python --version
       - echo ""
-      - echo "📂 Dateien"
-      - ls -lh quiz/*.py
     silent: true
