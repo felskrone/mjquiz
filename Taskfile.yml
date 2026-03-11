@@ -12,7 +12,8 @@ tasks:
     desc: Abhängigkeiten installieren
     cmds:
       - echo "📦 Installiere Abhängigkeiten..."
-      - uv venv && uv sync
+      - uv venv
+      - uv pip install -e .
       - echo "✅ Installation abgeschlossen!"
     silent: true
 
@@ -28,7 +29,7 @@ tasks:
     cmds:
       - echo "🔧 Starte Entwicklungsmodus mit Auto-Reload..."
       - echo "📁 Überwache Änderungen in quiz/ Ordner"
-      - FLASK_ENV=development FLASK_DEBUG=1 python -m {{.APP_MODULE}}
+      - FLASK_ENV=development FLASK_DEBUG=1 uv run python -m {{.APP_MODULE}}
     silent: true
 
   test:
@@ -51,8 +52,9 @@ tasks:
     desc: Komplettes Setup (venv + install + env)
     cmds:
       - echo "⚙️  Erstelle virtuelle Umgebung..."
-      - uv venv && uv sync
+      - uv venv
       - echo "📦 Installiere Abhängigkeiten..."
+      - uv pip install -e .
       - echo "📝 Erstelle .env Datei..."
       - cp .env.example .env
       - echo "✅ Setup abgeschlossen!"

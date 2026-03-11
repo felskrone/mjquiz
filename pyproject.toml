@@ -15,4 +15,8 @@ dev = [
 ]
 
 [project.scripts]
-minecraft-quiz = "app:app"
+minecraft-quiz = "quiz.anwendung:app"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
