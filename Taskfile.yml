@@ -111,3 +111,11 @@ tasks:
       - rm -rf build/ dist/ *.egg-info quiz/*.egg-info
       - echo "✅ Build-Artefakte entfernt!"
     silent: true
+
+  docker-build:
+    desc: Docker-Image bauen
+    cmds:
+      - echo "🐳 Baue Docker-Image..."
+      - docker build -t minecraft-quiz:latest .
+      - echo "✅ Docker-Image gebaut!"
+    silent: true

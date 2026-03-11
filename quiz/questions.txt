@@ -10,7 +10,7 @@ Answer 1: 8 Blöcke
 Answer 2: 10 Blöcke
 Answer 3: 12 Blöcke
 Answer 4: 14 Blöcke
-Correct Answer: 2
+Correct Answer: 4
 
 Question3: Welches Nahrungsmittel hat den höchsten Sättigungswert in Minecraft?
 Answer 1: Gebratenes Rindfleisch
@@ -102,3 +102,31 @@ Answer 2: Geschwindigkeit und Sprungkraft
 Answer 3: Stärke und Regeneration
 Answer 4: Absorption und Regeneration
 Correct Answer: 4
+
+Question16: Was ist die maximale Anzahl die ein Lapislazuli-Erz mit Glück drei auf der Eisenspitzhacke droppen lassen kann?
+Answer 1: 8
+Answer 2: 36
+Answer 3: 32
+Answer 4: 16
+Correct Answer: 2
+
+Question17: Was war das erste Craftingrezept?
+Answer 1: Apfel zu Pfeil 
+Answer 2: Stock zur Fackel
+Answer 3: Grasblock zu Erde
+Answer 4: Blaze-Rute zum Braustand
+Correct Answer: 1
+
+Question18: Welche Items braucht man um einen Zombiev-Villager zu heilen? 
+Answer 1: Stärke-Trank und goldene Karotte 
+Answer 2: Regenerations-Trank und Brot 
+Answer 3: Schnelligkeits-Trank und gebratenes Rindfleisch
+Answer 4: Schwäche-Trank und goldener Apfel
+Correct Answer: 4
+
+Question19: Welcher Mob spawnt in allen dreien Dimensionen?
+Answer 1: der Schleim 
+Answer 2: die Shulker 
+Answer 3: der Enderman 
+Answer 4: das Skelett
+Correct Answer: 3
