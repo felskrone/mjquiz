@@ -209,4 +209,10 @@ def health():
 
 if __name__ == '__main__':
     initialisiere_anwendung()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+
+    # Überwache auch .txt Dateien für Auto-Reload
+    import glob
+    extra_files = glob.glob('quiz/*.txt')
+
+    # Debug-Modus aktiviert Auto-Reload bei Dateiänderungen
+    app.run(debug=True, host='0.0.0.0', port=5000, use_reloader=True, extra_files=extra_files)

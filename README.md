@@ -10,7 +10,6 @@ Eine webbasierte Minecraft-Quiz-Anwendung, die mit Flask entwickelt wurde und Ih
 - 🎨 Minecraft-thematisches UI-Design
 - 📱 Responsives Design für Mobilgeräte und Desktop
 - ☁️ Bereit für Deployment auf Render.com
-- 🐳 Docker-Unterstützung mit Ubuntu und UV
 - 🇩🇪 Vollständig in Deutsch implementiert (Code)
 
 ## Projektstruktur
@@ -24,21 +23,17 @@ Eine webbasierte Minecraft-Quiz-Anwendung, die mit Flask entwickelt wurde und Ih
 │   ├── quiz_lader.py         # Fragen-Parser
 │   ├── questions.txt         # Quiz-Fragen-Daten
 │   ├── highscores.txt        # Top 10 Highscores
-│   ├── templates/
-│   │   ├── base.html         # Basis-Template
-│   │   ├── index.html        # Startseite
-│   │   ├── quiz.html         # Quiz-Oberfläche
-│   │   └── results.html      # Ergebnisseite
-│   └── static/
+│   ├── templates/            # HTML-Templates
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── quiz.html
+│   │   └── results.html
+│   └── static/               # Statische Dateien
 │       └── css/
-│           └── style.css     # Styling
-├── pyproject.toml           # Python-Abhängigkeiten & Projektkonfiguration
-├── render.yaml              # Render.com Deployment-Konfiguration
-├── .env.example             # Umgebungsvariablen-Vorlage
-├── Dockerfile               # Docker-Image (Ubuntu + UV)
-├── docker-compose.yml       # Docker Compose Konfiguration
-├── Makefile                 # Build- und Deployment-Helfer
-└── DOCKER.md                # Docker-Dokumentation
+│           └── style.css
+├── pyproject.toml            # Python-Abhängigkeiten & Projektkonfiguration
+├── render.yaml               # Render.com Deployment-Konfiguration
+└── .env.example              # Umgebungsvariablen-Vorlage
 ```
 
 ## Lokale Entwicklung
@@ -83,96 +78,64 @@ cp .env.example .env
 SECRET_KEY=ihr-geheimer-schluessel-hier
 ```
 
-### Lokal ausführen
+**Secret Key generieren:**
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
 
-1. Anwendung starten:
+### Anwendung starten
+
+**Option 1: Direkt mit Python**
 ```bash
 python -m quiz.anwendung
 ```
 
-Oder mit uv:
+**Option 2: Mit UV**
 ```bash
 uv run python -m quiz.anwendung
 ```
 
-2. Browser öffnen und navigieren zu:
-```
-http://localhost:5000
-```
-
-3. Namen eingeben und Quiz starten!
-
-## Docker Deployment
-
-### Schnellstart mit Docker Compose
-
-1. Docker Compose starten:
+**Option 3: Mit Task (empfohlen)**
 ```bash
-docker-compose up -d
+task run              # Normale Ausführung
+task dev              # Entwicklungsmodus
+task serve            # Produktion mit Gunicorn
 ```
 
-2. Anwendung aufrufen:
-```
-http://localhost:5000
-```
+Die Anwendung ist dann verfügbar unter: **http://localhost:5000**
 
-### Manuelle Docker-Befehle
-
-1. Docker-Image bauen:
-```bash
-docker build -t minecraft-quiz .
-```
-
-2. Container starten:
-```bash
-docker run -d -p 5000:5000 \
-  -e SECRET_KEY="ihr-sicherer-schluessel" \
-  -v $(pwd)/data:/app/data \
-  minecraft-quiz
-```
-
-### Mit Makefile
-
-Das Makefile bietet über 20 Hilfsbefehle:
+### Task installieren (optional)
 
 ```bash
-make help              # Alle Befehle anzeigen
-make build             # Docker-Image bauen
-make run               # Container starten
-make logs              # Logs anzeigen
-make test              # Health-Check durchführen
-make deploy            # Build + Run + Test
-```
+# macOS
+brew install go-task
 
-Weitere Informationen finden Sie in [DOCKER.md](DOCKER.md).
+# Linux
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+
+# Weitere Optionen: https://taskfile.dev/installation/
+```
 
 ## Deployment auf Render.com
 
 ### Automatisches Deployment
 
 1. Account auf [Render.com](https://render.com) erstellen
-
 2. GitHub-Repository verbinden
-
 3. Render erkennt automatisch die `render.yaml`-Datei und richtet den Service ein
-
 4. Die SECRET_KEY-Umgebungsvariable wird automatisch generiert
-
-5. Ihre App wird deployed auf `https://mjquiz.onrender.com`
+5. Ihre App wird deployed
 
 ### Manuelles Deployment
 
 1. Neuen Web Service auf Render.com erstellen
-
 2. Service konfigurieren:
    - **Umgebung**: Python
    - **Build-Befehl**: `pip install .`
    - **Start-Befehl**: `gunicorn quiz.anwendung:app`
    - **Python-Version**: 3.11
-
 3. Umgebungsvariable hinzufügen:
    - **SECRET_KEY**: (Sicheren zufälligen Schlüssel generieren)
-
 4. Deployen!
 
 ## Neue Fragen hinzufügen
@@ -204,12 +167,12 @@ Correct Answer: 2
 ## Datenspeicherung
 
 Die Anwendung verwendet eine Textdatei zum Speichern von Highscores:
-- Datei: `quiz/highscores.txt`
-- Format: Pipe-delimitiert (|)
-- Behält automatisch nur die Top 10 Ergebnisse
-- Felder: spieler_name, punktzahl, gesamte_fragen, prozentsatz, abgeschlossen_am
+- **Datei**: `quiz/highscores.txt`
+- **Format**: Pipe-delimitiert (|)
+- **Felder**: spieler_name, punktzahl, gesamte_fragen, prozentsatz, abgeschlossen_am
+- **Automatik**: Behält nur die Top 10 Ergebnisse
 
-**Vorteile der Textdatei:**
+**Vorteile:**
 - ✅ Einfach zu debuggen und inspizieren
 - ✅ Keine Datenbank-Setup erforderlich
 - ✅ Bessere Persistenz auf Render.com Free Tier
@@ -224,8 +187,7 @@ Die Anwendung verwendet eine Textdatei zum Speichern von Highscores:
 - `GET /results` - Endergebnisse anzeigen
 - `GET /health` - Health-Check-Endpunkt
 
-### Health-Check-Antwort
-
+**Health-Check-Antwort:**
 ```json
 {
   "status": "healthy",
@@ -239,9 +201,8 @@ Die Anwendung verwendet eine Textdatei zum Speichern von Highscores:
 - **Datenspeicher**: Textdatei (pipe-delimitiert)
 - **Server**: Gunicorn 21.2.0
 - **Frontend**: HTML, CSS (Minecraft-Theme)
-- **Deployment**: Render.com / Docker
+- **Deployment**: Render.com
 - **Paketmanager**: UV (10-100x schneller als pip)
-- **Container**: Docker mit Ubuntu 22.04
 
 ## Sicherheitsfeatures
 
@@ -250,12 +211,9 @@ Die Anwendung verwendet eine Textdatei zum Speichern von Highscores:
 - ✅ Atomare Datei-Schreiboperationen
 - ✅ Umgebungsbasierte Secret-Key-Konfiguration
 - ✅ CSRF-Schutz via Flask-Sessions
-- ✅ Non-root Docker-Benutzer (UID 1000)
 - ✅ Health-Checks für Monitoring
 
 ## Tests durchführen
-
-### Manuelle Tests
 
 Führen Sie die Anwendung lokal aus und testen Sie:
 
@@ -265,17 +223,9 @@ Führen Sie die Anwendung lokal aus und testen Sie:
 4. Edge-Cases testen (leerer Name, ungültige Antworten)
 5. Auf mehreren Browsern und Geräten testen
 
-### Automatisierte Tests
-
+**Health-Check:**
 ```bash
-# Docker-Tests ausführen
-./docker-test.sh
-
-# Health-Check
 curl http://localhost:5000/health
-
-# Python-Tests (wenn vorhanden)
-pytest
 ```
 
 ## Code-Besonderheiten
@@ -304,19 +254,11 @@ def speichere_ergebnis(spieler_name: str, punktzahl: int, gesamte_fragen: int) -
 
 ## Performance
 
-### UV Paketmanager
-
 Diese Anwendung verwendet **UV** anstelle von pip:
 - ⚡ 10-100x schneller bei der Paketinstallation
 - 🦀 In Rust geschrieben (von Astral/Ruff-Team)
 - 🎯 Bessere Dependency-Resolution
 - 📦 Kleinerer Cache-Footprint
-
-### Docker-Build-Zeiten
-
-- **Mit UV**: ~60-90 Sekunden (davon ~5-10s für Abhängigkeiten)
-- **Mit pip**: ~120-150 Sekunden (davon ~60-90s für Abhängigkeiten)
-- **Verbesserung**: 80-90% schnellere Dependency-Installation
 
 ## Mitwirken
 
@@ -330,22 +272,14 @@ Dieses Projekt ist Open Source und für Bildungszwecke verfügbar.
 
 Für Probleme oder Fragen erstellen Sie bitte ein Issue im Repository.
 
-## Dokumentation
-
-- **README.md** - Diese Datei (Projektübersicht)
-- **DOCKER.md** - Umfassende Docker-Dokumentation
-- **DEPLOYMENT.md** - Deployment-Anleitungen
-- **project.md** - Projektspezifikation
-
 ## Changelog
 
 ### Version 1.0.0
 - ✅ SQLite zu Textdatei-Speicher konvertiert
 - ✅ Code nach `/quiz` reorganisiert
 - ✅ Vollständige deutsche Implementierung
-- ✅ Docker-Support mit UV hinzugefügt
-- ✅ Makefile und Automatisierung hinzugefügt
-- ✅ Umfassende Dokumentation erstellt
+- ✅ Einfaches Setup ohne Docker
+- ✅ UV-Integration für schnelle Installation
 
 ---
 

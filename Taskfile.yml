@@ -1,0 +1,110 @@
+# Taskfile für Minecraft Quiz - Lokale Entwicklung
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  APP_MODULE: quiz.anwendung
+  PORT: 5000
+
+tasks:
+  install:
+    desc: Abhängigkeiten installieren
+    cmds:
+      - echo "📦 Installiere Abhängigkeiten..."
+      - uv pip install .
+      - echo "✅ Installation abgeschlossen!"
+    silent: true
+
+  install-pip:
+    desc: Abhängigkeiten installieren (mit pip)
+    cmds:
+      - echo "📦 Installiere Abhängigkeiten mit pip..."
+      - pip install .
+      - echo "✅ Installation abgeschlossen!"
+    silent: true
+
+  run:
+    desc: Anwendung starten
+    cmds:
+      - echo "🚀 Starte Anwendung auf http://localhost:{{.PORT}}"
+      - python -m {{.APP_MODULE}}
+    silent: true
+
+  dev:
+    desc: Anwendung im Entwicklungsmodus starten (mit Auto-Reload)
+    cmds:
+      - echo "🔧 Starte Entwicklungsmodus mit Auto-Reload..."
+      - echo "📁 Überwache Änderungen in quiz/ Ordner"
+      - FLASK_ENV=development FLASK_DEBUG=1 python -m {{.APP_MODULE}}
+    silent: true
+
+  test:
+    desc: Health Check durchführen
+    cmds:
+      - echo "🏥 Führe Health Check durch..."
+      - curl -s http://localhost:{{.PORT}}/health | python -m json.tool || echo "❌ Health Check fehlgeschlagen"
+    silent: true
+
+  clean:
+    desc: Generierte Dateien entfernen
+    cmds:
+      - echo "🧹 Räume auf..."
+      - rm -rf __pycache__ quiz/__pycache__ quiz/highscores.txt
+      - rm -rf .pytest_cache .coverage htmlcov
+      - echo "✅ Aufgeräumt!"
+    silent: true
+
+  setup:
+    desc: Komplettes Setup (venv + install + env)
+    cmds:
+      - echo "⚙️  Erstelle virtuelle Umgebung..."
+      - python -m venv venv
+      - echo "📦 Installiere Abhängigkeiten..."
+      - ./venv/bin/pip install .
+      - echo "📝 Erstelle .env Datei..."
+      - cp .env.example .env
+      - echo "✅ Setup abgeschlossen!"
+      - echo ""
+      - echo "▶️  Nächste Schritte - 1. Aktiviere venv - source venv/bin/activate"
+      - echo "   2. Bearbeite .env und setze SECRET_KEY"
+      - echo "   3. Starte App - task run"
+    silent: true
+
+  generate-key:
+    desc: Sicheren SECRET_KEY generieren
+    cmds:
+      - echo "🔐 Generiere SECRET_KEY..."
+      - python -c "import secrets; print('SECRET_KEY=' + secrets.token_hex(32))"
+      - echo ""
+      - echo "💡 Kopiere die Zeile oben in deine .env Datei"
+    silent: true
+
+  check:
+    desc: Code-Qualität prüfen
+    cmds:
+      - echo "🔍 Prüfe Code..."
+      - python -m py_compile quiz/anwendung.py quiz/datenbank.py quiz/quiz_lader.py
+      - echo "✅ Keine Syntax-Fehler gefunden!"
+    silent: true
+
+  serve:
+    desc: Produktions-Server mit Gunicorn starten
+    cmds:
+      - echo "🚀 Starte Gunicorn Server..."
+      - gunicorn --bind 0.0.0.0:{{.PORT}} --workers 4 {{.APP_MODULE}}:app
+    silent: true
+
+  info:
+    desc: Projekt-Informationen anzeigen
+    cmds:
+      - echo "📊 Projekt-Informationen"
+      - echo "   Name - Minecraft Quiz"
+      - echo "   Modul - {{.APP_MODULE}}"
+      - echo "   Port - {{.PORT}}"
+      - echo "   URL - http://localhost:{{.PORT}}"
+      - python --version
+      - echo ""
+      - echo "📂 Dateien"
+      - ls -lh quiz/*.py
+    silent: true

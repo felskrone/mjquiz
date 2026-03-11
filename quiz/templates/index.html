@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Minecraft Quiz - Home{% endblock %}
+{% block title %}Minecraft Quiz - Startseite{% endblock %}
 
 {% block content %}
 <div class="home-content">
     <section class="welcome-section">
-        <h2>Welcome to the Minecraft Quiz!</h2>
-        <p>Test your knowledge about Minecraft and compete for the top spot on the leaderboard.</p>
+        <h2>Willkommen zum Minecraft Quiz!</h2>
+        <p>Teste dein Wissen über Minecraft und kämpfe um den ersten Platz in der Bestenliste.</p>
     </section>
 
     <section class="high-scores-section">
-        <h2>🏆 Top 10 High Scores 🏆</h2>
+        <h2>🏆 Top 10 Highscores 🏆</h2>
         {% if top_ergebnisse %}
             <table class="high-scores-table">
                 <thead>
                     <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
-                        <th>Date</th>
+                        <th>Rang</th>
+                        <th>Spieler</th>
+                        <th>Punktzahl</th>
+                        <th>Prozent</th>
+                        <th>Datum</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,26 +35,26 @@
                 </tbody>
             </table>
         {% else %}
-            <p class="no-scores">No high scores yet. Be the first to play!</p>
+            <p class="no-scores">Noch keine Highscores. Sei der Erste und spiele!</p>
         {% endif %}
     </section>
 
     <section class="start-quiz-section">
-        <h2>Ready to Play?</h2>
+        <h2>Bereit zum Spielen?</h2>
         <form method="POST" action="{{ url_for('start') }}" class="start-form">
             <div class="form-group">
-                <label for="spieler_name">Enter Your Name:</label>
+                <label for="spieler_name">Gib deinen Namen ein:</label>
                 <input
                     type="text"
                     id="spieler_name"
                     name="spieler_name"
                     maxlength="50"
                     required
-                    placeholder="Your name here"
+                    placeholder="Dein Name"
                     autofocus
                 >
             </div>
-            <button type="submit" class="btn btn-primary">Start Quiz</button>
+            <button type="submit" class="btn btn-primary">Quiz starten</button>
         </form>
     </section>
 </div>

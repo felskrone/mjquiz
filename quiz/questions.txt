@@ -17,7 +17,7 @@ Answer 1: Cooked beef
 Answer 2: Golden carrot
 Answer 3: Enchanted golden apple
 Answer 4: Cake
-Correct Answer: 2
+Correct Answer: 4
 
 Question4: At what Y-level do diamonds spawn most commonly?
 Answer 1: Y: 5 to Y: 12
