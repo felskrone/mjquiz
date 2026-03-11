@@ -1,0 +1,18 @@
+[project]
+name = "minecraft-quiz"
+version = "0.1.0"
+description = "A web-based Minecraft quiz application with high score tracking"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.0.0",
+    "gunicorn>=21.2.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+]
+
+[project.scripts]
+minecraft-quiz = "app:app"

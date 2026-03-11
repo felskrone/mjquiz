@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: minecraft-quiz
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install ."
+    startCommand: "gunicorn quiz.anwendung:app"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0

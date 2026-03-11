@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Minecraft Quiz - Results{% endblock %}
+
+{% block content %}
+<div class="results-content">
+    <div class="results-card">
+        <h2>Quiz Complete!</h2>
+
+        <div class="player-info">
+            <p class="player-name">{{ spieler_name }}</p>
+        </div>
+
+        <div class="score-display">
+            <div class="score-big">
+                {{ punktzahl }} / {{ gesamte_fragen }}
+            </div>
+            <div class="percentage">
+                {{ "%.1f"|format(prozentsatz) }}%
+            </div>
+        </div>
+
+        <div class="score-message">
+            {% if prozentsatz == 100 %}
+                <p class="excellent">🎉 Perfect Score! You're a Minecraft Master! 🎉</p>
+            {% elif prozentsatz >= 80 %}
+                <p class="great">🌟 Great job! You know your Minecraft! 🌟</p>
+            {% elif prozentsatz >= 60 %}
+                <p class="good">👍 Good effort! Keep learning! 👍</p>
+            {% elif prozentsatz >= 40 %}
+                <p class="okay">📚 Not bad! There's room to improve! 📚</p>
+            {% else %}
+                <p class="needs-work">💪 Keep practicing! You'll get better! 💪</p>
+            {% endif %}
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">View High Scores</a>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Play Again</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

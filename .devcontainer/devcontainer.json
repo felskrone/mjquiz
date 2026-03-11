@@ -1,0 +1,34 @@
+{
+	"name": "nettm-daily-business",
+	"image": "gdartifactory1.jfrog.io/docker-networking-tm-images-local/bastion:netdev-0.1.16",
+	"containerEnv": {
+		"AWS_OKTA_USER": "${localEnv:USER}",
+		"GIT_AUTHOR_EMAIL": "${localEnv:GIT_AUTHOR_EMAIL}",
+		"GIT_AUTHOR_NAME": "${localEnv:GIT_AUTHOR_NAME}",
+		"GIT_COMMITTER_EMAIL": "${localEnv:GIT_AUTHOR_EMAIL}",
+		"GIT_COMMITTER_NAME": "${localEnv:GIT_AUTHOR_NAME}",
+		"GOCODE_API_TOKEN": "${localEnv:GOCODE_API_TOKEN}",
+		"GODADDY_USERNAME": "${localEnv:GODADDY_USERNAME}",
+		"LUMINATE_USERNAME": "${localEnv:LUMINATE_USERNAME}",
+		"BASTION": "${localEnv:BASTION}",
+		"CYBERARK_HOST": "${localEnv:CYBERARK_HOST}",
+		"TEAM": "${localEnv:TEAM}",
+		"CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1"
+	},
+	"workspaceFolder": "/workspace",
+	"postAttachCommand": "/docker-entrypoint.sh",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"Anthropic.claude-code",
+				"ms-azuretools.vscode-containers",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"mechatroner.rainbow-csv",
+				"yzhang.markdown-all-in-one"
+			]
+		}
+	}
+}
