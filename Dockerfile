@@ -22,6 +22,12 @@ RUN apt-get update && \
     software-properties-common \
     curl \
     ca-certificates \
+    iputils-ping \
+    bind9-dnsutils \
+    psmisc \
+    lsof \
+    vim \
+    iproute2 \    
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -56,9 +62,9 @@ RUN uv sync
 # Exponiere Port 5000
 EXPOSE 5000
 
-# Gesundheitscheck
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/health || exit 1
+# # Gesundheitscheck
+# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+#     CMD curl -f http://localhost:5000/health || exit 1
 
 # Umgebungsvariablen
 ENV FLASK_APP=quiz.anwendung
@@ -66,4 +72,6 @@ ENV FLASK_ENV=production
 ENV SECRET_KEY=change-this-secret-key-in-production
 
 # Startbefehl
-CMD ["uv", "run", "gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "quiz.anwendung:app"]
+# uv run gunicorn --bind 0.0.0.0:5000 --workers 4 --timeout 120 quiz.anwendung:app
+# CMD ["uv", "run", "gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "quiz.anwendung:app"]
+CMD ["uv", "run", "python3", "-m", "quiz.anwendung"]

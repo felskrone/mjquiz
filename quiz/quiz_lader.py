@@ -77,7 +77,7 @@ def lade_quiz_fragen(dateiname: str = None) -> List[QuizFrage]:
     """
     # Verwende Standardpfad, wenn kein Dateiname angegeben
     if dateiname is None:
-        dateiname = os.path.join(os.path.dirname(__file__), 'questions.txt')
+        dateiname = os.path.join(os.path.dirname(__file__), 'data/questions.txt')
 
     fragen = []
 

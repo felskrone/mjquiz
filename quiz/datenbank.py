@@ -12,7 +12,7 @@ from typing import List, Dict, Any
 
 
 # Pfad zur Highscore-Datei
-HIGHSCORES_DATEI = os.path.join(os.path.dirname(__file__), 'highscores.txt')
+HIGHSCORES_DATEI = os.path.join(os.path.dirname(__file__), 'data/highscores.txt')
 
 
 def initialisiere_speicher() -> None:

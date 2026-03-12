@@ -1,0 +1,4 @@
+spieler_name|punktzahl|gesamte_fragen|prozentsatz|abgeschlossen_am
+Mats|17|19|89.5|2026-03-11 20:48:21
+Nadine|4|19|21.1|2026-03-11 23:24:14
+Volker|3|19|15.8|2026-03-12 22:16:24
